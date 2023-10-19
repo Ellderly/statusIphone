@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <form action="/add-link" method="post">
+        <input type="url" name="url" required placeholder="Enter URL">
+        <button type="submit">Add Link</button>
+    </form>
+    <ul>
+        <% links.forEach(link => { %>
+            <li>
+                <div class="link-info">
+                    <a href="<%= link.url %>" target="_blank"><%= link.url %></a>
+                    - <%= link.availability %>
+                </div>
+                <form action="/delete-link" method="post">
+                    <input type="hidden" name="id" value="<%= link.id %>">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
